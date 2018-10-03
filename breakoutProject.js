@@ -58,8 +58,7 @@ class Princess extends Sprite {
             new Ball();
         }
         if (this.lives <= 0) {
-            game.end("The mysterious stranger has escaped\nPrincess Ann for now!" + 
-            "\n\nBetter luck next time.");
+            game.end("The hidden blocks outsmarted you!\n\nTry again :(");
         }
     }
     addALife() {
@@ -131,8 +130,7 @@ class Block extends Sprite {
         game.removeSprite(this);
         Block.blocksToDestroy = Block.blocksToDestroy - 1;
         if (Block.blocksToDestroy <= 0) {
-            game.end("Congratulations!\n\nPrincess Ann can continue"+
-            " her pursuit\nof the mysterious stranger!");
+            game.end("You found all of the hidden blocks!");
             return true;
         }
     }
@@ -154,6 +152,7 @@ class ExtraLifeBlock extends Block {
 }
 
 new ExtraLifeBlock(700, 500);
+new ExtraLifeBlock(100, 500);
 
 class ExtraBallBlock extends Block {
     constructor(x, y) {
