@@ -1,6 +1,6 @@
 import {game, Sprite} from "./sgc/sgc.js";
 
-game.setBackground("grass.png");
+game.setBackground("background.png");
 
 class Wall extends Sprite {
     constructor(x, y, name, image) {
@@ -13,10 +13,10 @@ class Wall extends Sprite {
     }
 }
 
-new Wall(0, 0, "A spooky castle wall", "castle.png");
+new Wall(0, 0, "top", "topWall.png");
 
-let leftWall = new Wall(0, 200, "Left side wall", "wall.png");
-let rightWall = new Wall(752, 200, "Right side wall", "wall.png");
+let leftWall = new Wall(0, 2, "Left side wall", "sideWall.png");
+let rightWall = new Wall(798, 2, "Right side wall", "sideWall.png");
 
 class Princess extends Sprite {
     constructor() {
@@ -27,7 +27,7 @@ class Princess extends Sprite {
         this.width = 48;
         this.x = (game.displayWidth / 2) - 24;
         this.y = (game.displayHeight - 48);
-        this.speedWhenWalking = 200;
+        this.speedWhenWalking = 150;
         this.lives = 3;
         this.accelerateOnBounce = false;
         this.defineAnimation("left", 9, 11);
@@ -99,7 +99,7 @@ class Ball extends Sprite {
         Ball.ballsInPlay = Ball.ballsInPlay + 1;
     }
     handleGameLoop() {
-        if (this.speed < 200) {
+        if (this.speed < 150) {
             this.speed += 2;
         }
     }
@@ -148,11 +148,12 @@ class ExtraLifeBlock extends Block {
     }
     handleCollision() {
         ann.addALife();
+        super.handleCollision();
         return true;
     }
 }
 
-new ExtraLifeBlock(200, 250);
+new ExtraLifeBlock(700, 500);
 
 class ExtraBallBlock extends Block {
     constructor(x, y) {
@@ -166,10 +167,35 @@ class ExtraBallBlock extends Block {
     }
 }
 
-new ExtraBallBlock(300, 250);
 
-for (let i = 0; i < 5; i = i + 1) {
-    new Block(200 + i * 48, 200);
+for (let i = 0; i < 15; i = i + 1) {
+    new Block(48 + i * 48, 32);
 }
 
+for (let i = 0; i < 15; i = i + 1) {
+    new Block(24 + i * 48, 64);
+}
 
+for (let i = 0; i < 15; i = i + 1) {
+    new Block(48 + i * 48, 96);
+}
+
+for (let i = 0; i < 15; i = i + 1) {
+    new ExtraBallBlock(24 + i * 96, 128);
+}
+
+for (let i = 0; i < 15; i = i + 1) {
+    new Block(48 + i * 48, 160);
+}
+
+for (let i = 0; i < 15; i = i + 1) {
+    new Block(24 + i * 48, 192);
+}
+
+for (let i = 0; i < 15; i = i + 1) {
+    new ExtraBallBlock(48 + i * 96, 224);
+}
+
+for (let i = 0; i < 15; i = i + 1) {
+    new Block(24 + i * 48, 256);
+}
